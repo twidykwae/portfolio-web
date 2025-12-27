@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@plugin "daisyui";
+
+@layer base {
+  html {
+    @apply bg-black;
+    scroll-behavior: smooth;
+  }
+  * {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-black text-white;
+    overflow-x: hidden;
+  }
+  img {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  img:focus {
+    outline: none;
+    border: none;
+  }
+}
+
+@keyframes expand {
+  0% { width: 0; }
+  50% { width: 100%; }
+  100% { width: 0; }
+}
+
+.animate-expand {
+  animation: expand 4s infinite;
+}
