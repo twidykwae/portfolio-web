@@ -6,6 +6,9 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
+
+app.set('trust proxy', true);
+
 app.use(cors({
   origin: process.env.FRONTEND_URL,
   methods: ["GET", "POST", "OPTIONS"],         
