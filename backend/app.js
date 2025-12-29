@@ -7,10 +7,6 @@ dotenv.config();
 
 const app = express();
 
-// Trust proxy - use 1 to trust first proxy (Railway uses one proxy)
-// For local development, set to false or 0
-app.set('trust proxy', 1);
-
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
