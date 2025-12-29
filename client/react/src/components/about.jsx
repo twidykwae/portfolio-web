@@ -10,7 +10,7 @@ export default function About() {
 
         <div className="flex justify-center pt-11">
           <a
-            href="/Twidy's_resume.pdf"
+            href="/my_resume.pdf"
             target="_blank"
             className="flex items-center gap-2 bg-white text-black border border-black px-8 py-2 rounded-3xl font-medium hover:bg-green-400 transition"
           >

@@ -4,6 +4,12 @@ export default function Projects() {
 
     const projects = [
         {
+            name: "NBA Win Probability Prediction ML Model ",
+            description: "•	Developed and evaluated a logistic regression classifier to estimate NBA win probabilities using the 2025/26 data, achieving 95% prediction accuracy and 94% recall",
+            image: "/Screenshot 2025-12-26 224016.png",
+            link: "https://github.com/twidykwae/nba-win-probability-predictor"
+        },
+        {
             name: "UniCore",
             description: "UniCore is a campus-focused platform that helps students connect, find lost items, share prayer requests, and build community in one place",
             image: "/Screenshot 2025-12-26 224016.png",
