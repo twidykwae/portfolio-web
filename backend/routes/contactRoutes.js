@@ -15,6 +15,9 @@ const contactRateLimiter = rateLimit({
   standardHeaders: true, 
   legacyHeaders: false, 
 });
+router.options("/contact", (req, res) => {
+  res.sendStatus(200);
+});
 
 router.post("/contact", contactRateLimiter, async (req, res) => {
   try {
