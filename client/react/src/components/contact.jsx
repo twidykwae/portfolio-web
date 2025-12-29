@@ -8,12 +8,19 @@ export default function Contact() {
     message: "",
   });
 
-   const topCenter = () => {
+   const showSuccess = () => {
     toast.success('Thank you for connecting!', {
       position: 'top-center',
       theme: 'colored'
     });
-  }; 
+  };
+
+  const showError = (message) => {
+    toast.error(message, {
+      position: 'top-center',
+      theme: 'colored'
+    });
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -26,20 +33,47 @@ export default function Contact() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`https://portfolio-web-production-421f.up.railway.app/api/contact`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL || 'https://portfolio-web-production-421f.up.railway.app'}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-      console.log(import.meta.env.VITE_BACKEND_URL);
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        // Handle different error status codes
+        if (res.status === 429) {
+          // Rate limit exceeded
+          showError('Too many attempts. Please wait 15 minutes before trying again.');
+        } else if (res.status === 400) {
+          // Validation error
+          showError(data.error || 'Please check your input and try again.');
+        } else if (res.status === 500) {
+          // Server error (including email send failure)
+          showError(data.error || 'Something went wrong. Please try again later.');
+        } else {
+          // Other errors
+          showError(data.error || 'An error occurred. Please try again.');
+        }
+        return;
+      }
+
+      // Success
+      showSuccess();
+      // Reset form after successful submission
+      setFormData({
+        Name: "",
+        email: "",
+        message: "",
+      });
 
     } catch (err) {
       console.error(err);
+      showError('Network error. Please check your connection and try again.');
     }
-
-    topCenter();
   };
 
   return (

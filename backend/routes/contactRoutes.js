@@ -44,11 +44,17 @@ router.post("/contact", contactRateLimiter, async (req, res) => {
       }
     }
 
+    let emailSent = false;
     try {
       await sendMeEmail({ Name, email, message });
       console.log(`Email sent successfully for contact from ${email}`);
+      emailSent = true;
     } catch (emailError) {
       console.error("Error sending email:", emailError);
+      // Return error response if email fails to send
+      return res.status(500).json({ 
+        error: "Failed to send email notification. Your message was saved, but we couldn't send you a confirmation email. Please try again later." 
+      });
     }
     
     res.status(201).json({ message: "Contact form submitted successfully!" });
