@@ -6,11 +6,11 @@ export default function Experience(){
 
     const experiences = [
         {
-            company: "Taylor University IT Helpdesk",
+            company: "Taylor University IT",
             position: "Field First Technician",
             location: "Upland, Indiana",
-            duration: "May 2025 - Present (Campus Employment)",
-            description: "Provide technical support for 100+ users, manage 50+ weekly tickets, and configure campus workstations using tools like Office 365, Ticketing System(Team Dynamix), Active Directory, and remote support utilities.",
+            duration: "May 2025 - Present",
+            description: "• Deliver technical support to all students, faculty and lecturers on campus resolving hardware, software and network issues, improving user satisfaction • Resolve user tickets using Team Dynamix and resolving user issues over the phone. • Configure and ensure smooth deployment of laptops and workstations for use across campus ",
             isActive: true
         },
         {
@@ -18,7 +18,7 @@ export default function Experience(){
             position: "Peer Tutor",
             location: "Upland, Indiana",
             duration: "February 2025 - Present (Campus Employment)",
-            description: "Tutored students in calculus, helping 85% improve their grades by at least one letter and strengthen understanding of complex concepts",
+            description: "Provide one-on-one tutoring in core courses like Statistics, Introduction to Computational Solving with Python, Music Theory and Calculus resulting in students improving their grades and enhancing understanding in these courses",
             isActive: false
         },
         {
@@ -26,7 +26,7 @@ export default function Experience(){
             position: "STEM Tutor",
             location: "Accra, Ghana",
             duration: "April 2024 - August 2024",
-            description: "Taught 50+ students (ages 6–15) robotics, programming, and design, mentoring them through challenges that built problem-solving, creativity, and confidence in STEM.",
+            description: " Instructed 100+ students between the ages 6 to 15 on how to build and program robots with Lego EV3 and Scratch • Created weekly interactive robotics challenges to boost children’s problem-solving skills, and to enhance creativity, confidence in STEM and to inspire a passion for technology in general ",
             isActive: false
         }
     ]
