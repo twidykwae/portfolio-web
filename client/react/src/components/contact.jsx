@@ -26,7 +26,7 @@ export default function Contact() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/contact`, {
+      const res = await fetch(`$https://portfolio-web-production-421f.up.railway.app//api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
