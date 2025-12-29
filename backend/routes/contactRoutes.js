@@ -13,22 +13,10 @@ const contactRateLimiter = rateLimit({
     error: "Too many contact form submissions from this IP, please try again later."
   },
   standardHeaders: true, 
-  legacyHeaders: false,
-  skip: (req) => req.method === "OPTIONS" // Skip rate limiting for OPTIONS requests
-});
-
-// Handle OPTIONS preflight requests (must be before rate limiter)
-router.options("/contact", (req, res) => {
-  console.log("OPTIONS request received for /contact");
-  res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
-  res.header("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.sendStatus(200);
+  legacyHeaders: false, 
 });
 
 router.post("/contact", contactRateLimiter, async (req, res) => {
-  console.log("POST request received for /contact");
   try {
     const { Name, email, message } = req.body;
 
