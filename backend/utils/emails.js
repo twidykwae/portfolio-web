@@ -1,34 +1,26 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
 export const sendMeEmail = async ({ Name, email, message }) => {
   // Check if required environment variables are set
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS || !process.env.EMAIL_RECEIVER) {
-    throw new Error("Email configuration is missing. Please check your environment variables.");
+  if (!process.env.RESEND_API_KEY || !process.env.EMAIL_RECEIVER) {
+    throw new Error("Email configuration is missing. Please check your environment variables (RESEND_API_KEY and EMAIL_RECEIVER).");
   }
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
+  // Initialize Resend with API key
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
-  // Verify transporter configuration
-  try {
-    await transporter.verify();
-    console.log("Email server is ready to send messages");
-  } catch (error) {
-    console.error("Email server verification failed:", error);
-    throw new Error("Email server configuration is invalid.");
-  }
+  // Use your verified domain or Resend's default sending domain
+  // If you have a custom domain, use: `contact@yourdomain.com`
+  // Otherwise, use Resend's default: `onboarding@resend.dev`
+  const fromEmail = process.env.EMAIL_FROM || "onboarding@resend.dev";
 
-  const mailOptions = {
-    from: `"${Name || "Contact Form"}" <${process.env.EMAIL_USER}>`,
-    replyTo: email, // So you can reply directly to the sender
-    to: process.env.EMAIL_RECEIVER,
+  const emailData = {
+    // Format: "Visitor Name via Contact Form" <your-verified-email>
+    // This makes it clear who sent the message
+    from: `"${Name || "Contact Form Visitor"} via Contact Form" <${fromEmail}>`,
+    to: process.env.EMAIL_RECEIVER, // Your email address
+    reply_to: email, // Visitor's email - when you hit reply, it goes directly to them
     subject: `New Contact Form Message from ${Name || "Unknown"}`,
-    text: `You received a new message from the contact form:\n\nName: ${Name || "Not provided"}\nEmail: ${email}\n\nMessage:\n${message || "No message provided"}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #333;">New Contact Form Message</h2>
@@ -47,9 +39,9 @@ export const sendMeEmail = async ({ Name, email, message }) => {
   };
 
   try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully:", info.messageId);
-    return info;
+    const data = await resend.emails.send(emailData);
+    console.log("Email sent successfully:", data.id);
+    return data;
   } catch (error) {
     console.error("Error sending email:", error);
     throw error;
