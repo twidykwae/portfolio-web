@@ -9,14 +9,14 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL,  
+  origin: [process.env.FRONTEND_URL, "https://www.twidykwae.xyz"],
   methods: ["GET", "POST"],         
   credentials: true
 })); 
 
 const PORT = process.env.PORT || 3001;
 
-app.use("/", contactRoutes);
+app.use("/api", contactRoutes);
 
 app.get("/", (req, res) => {
   res.send("App is working");
