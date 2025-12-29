@@ -15,7 +15,6 @@ export const sendMeEmail = async ({ Name, email, message }) => {
   const fromEmail = process.env.EMAIL_FROM || "onboarding@resend.dev";
 
   const emailData = {
-    // Format: "Visitor Name via Contact Form" <your-verified-email>
     // This makes it clear who sent the message
     from: `"${Name || "Contact Form Visitor"} via Contact Form" <${fromEmail}>`,
     to: process.env.EMAIL_RECEIVER, // Your email address
@@ -40,10 +39,29 @@ export const sendMeEmail = async ({ Name, email, message }) => {
 
   try {
     const data = await resend.emails.send(emailData);
-    console.log("Email sent successfully:", data.id);
+    
+    // Log the full response for debugging
+    console.log("Resend API response:", JSON.stringify(data, null, 2));
+    
+    if (data.error) {
+      console.error("Resend API error:", data.error);
+      throw new Error(`Resend API error: ${JSON.stringify(data.error)}`);
+    }
+    
+    if (data.id) {
+      console.log("Email sent successfully. Email ID:", data.id);
+    } else {
+      console.warn("Email sent but no ID returned. Response:", data);
+    }
+    
     return data;
   } catch (error) {
     console.error("Error sending email:", error);
+    console.error("Error details:", {
+      message: error.message,
+      name: error.name,
+      stack: error.stack
+    });
     throw error;
   }
 };
