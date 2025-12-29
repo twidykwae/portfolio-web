@@ -9,9 +9,8 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: [process.env.FRONTEND_URL, "https://www.twidykwae.xyz"],
-  methods: ["GET", "POST", "OPTIONS"],         
-  allowedHeaders: ["Content-Type", "Authorization"],
+  origin: process.env.FRONTEND_URL,
+  methods: ["GET", "POST"],         
   credentials: true
 })); 
 
