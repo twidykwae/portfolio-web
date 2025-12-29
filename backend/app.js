@@ -12,7 +12,25 @@ const app = express();
 app.set('trust proxy', 1);
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // List of allowed origins
+    const allowedOrigins = [
+      process.env.FRONTEND_URL,
+      "https://twidykwae.xyz",
+      "https://www.twidykwae.xyz",
+      "http://localhost:5173", // For local development
+      "http://localhost:3000"   // For local development
+    ].filter(Boolean); 
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "OPTIONS"],         
   credentials: true
 }));
