@@ -6,13 +6,12 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
-app.use(express.json());
-
 app.use(cors({
   origin: process.env.FRONTEND_URL,
-  methods: ["GET", "POST"],         
+  methods: ["GET", "POST", "OPTIONS"],         
   credentials: true
-})); 
+}));
+app.use(express.json()); 
 
 const PORT = process.env.PORT || 3001;
 
