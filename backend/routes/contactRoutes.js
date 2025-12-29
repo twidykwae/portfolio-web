@@ -16,6 +16,11 @@ const contactRateLimiter = rateLimit({
   legacyHeaders: false, 
 });
 
+// Handle OPTIONS preflight requests
+router.options("/contact", (req, res) => {
+  res.sendStatus(200);
+});
+
 router.post("/contact", contactRateLimiter, async (req, res) => {
   try {
     const { Name, email, message } = req.body;
