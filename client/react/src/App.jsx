@@ -6,6 +6,7 @@ import Projects from "./components/projects.jsx";
 import BibleVerse from "./components/bibleVerse.jsx";
 import Contact from "./components/contact.jsx";
 import Footer from "./components/footer.jsx";
+import RAGChat from "./components/ragChat.jsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Projects />
       <Contact />
       <Footer />
+      <RAGChat />
     </>
   );
 }

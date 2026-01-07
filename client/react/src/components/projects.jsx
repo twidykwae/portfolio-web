@@ -24,19 +24,19 @@ export default function Projects() {
     ]
   return (
     <section className="bg-black text-white">
-        <div className="max-w-7xl mx-auto px-8 py-16">
-            <h2 className="text-3xl font-bold mb-12 relative inline-block">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-12 sm:py-16">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 relative inline-block">
                 Projects
                 <span className="absolute left-0 bottom-10 h-1 bg-white w-0 animate-expand mt-10"></span>
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 justify-items-center">
             {projects.map((project, index) => (
                 <a 
                 key={index}
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative card bg-black border border-gray-900 w-72 shadow-md group overflow-hidden rounded-xl"
+                className="relative card bg-black border border-gray-900 w-full max-w-sm sm:w-72 shadow-md group overflow-hidden rounded-xl"
                 >
                 {project.image && (
                     <figure className="w-full h-48 overflow-hidden">
@@ -48,8 +48,8 @@ export default function Projects() {
                     </figure>
                 )}
                 <div className="card-body text-white p-4">
-                    <h2 className="card-title text-xl font-semibold mb-2">{project.name}</h2>
-                    <p className="text-gray-300 text-sm">{project.description}</p>
+                    <h2 className="card-title text-lg sm:text-xl font-semibold mb-2">{project.name}</h2>
+                    <p className="text-gray-300 text-xs sm:text-sm">{project.description}</p>
                 </div>
                 </a>
             ))}

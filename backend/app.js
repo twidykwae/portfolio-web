@@ -1,11 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
 import contactRoutes from "./routes/contactRoutes.js";
+import ragRoutes from "./routes/ragRoutes.js";
 import connectDB from "./config/db.js";
 import cors from "cors";
 dotenv.config();
 
 const app = express();
+
+// Trust proxy - required for Railway/reverse proxy setups
+app.set('trust proxy', 1);
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -35,6 +39,7 @@ app.use(express.json());
 const PORT = process.env.PORT || 3001;
 
 app.use("/api", contactRoutes);
+app.use("/api", ragRoutes);
 
 app.get("/", (req, res) => {
   res.send("App is working");

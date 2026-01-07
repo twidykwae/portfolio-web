@@ -32,48 +32,46 @@ export default function Experience(){
     ]
 
     return (
-        <section id="experience" className=" bg-black text-white">
-  <div className="max-w-7xl mx-auto px-8 py-16">
-    <h2 className="text-3xl font-bold mb-12 relative inline-block">
-        Experience
-        <span className="absolute left-0 bottom-10 h-1 bg-white w-0 animate-expand mt-10"></span>
-    </h2>
+        <section id="experience" className="bg-black text-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-12 sm:py-16">
+                <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 relative inline-block">
+                    Experience
+                    <span className="absolute left-0 bottom-10 h-1 bg-white w-0 animate-expand mt-10"></span>
+                </h2>
 
-    <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-      
-      {/* job details with vertical divider */}
-      <div className="md:col-span-4 border-r border-gray-900 pr-8">
-        <h3 className="text-xl font-semibold">
-          {experiences[selected].position}
-        </h3>
-        <p className="text-gray-400">
-          {experiences[selected].location}
-        </p>
-        <p className="text-gray-400">{experiences[selected].duration}</p>
-        <p className="text-gray-400 mt-4">
-          {experiences[selected].description}
-        </p>
-      </div>
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8">
+                    {/* job details with vertical divider */}
+                    <div className="md:col-span-4 md:border-r md:border-gray-900 md:pr-8">
+                        <h3 className="text-lg sm:text-xl font-semibold">
+                            {experiences[selected].position}
+                        </h3>
+                        <p className="text-gray-400 text-sm sm:text-base">
+                            {experiences[selected].location}
+                        </p>
+                        <p className="text-gray-400 text-sm sm:text-base">{experiences[selected].duration}</p>
+                        <p className="text-gray-400 mt-4 text-sm sm:text-base leading-relaxed">
+                            {experiences[selected].description}
+                        </p>
+                    </div>
 
-      {/* list of companies */}
-      <div className="flex flex-col space-y-4 pl-8">
-        {experiences.map((exp, index) => (
-          <button
-            key={index}
-            onClick={() => setSelected(index)}
-            className={`block text-right w-full transition-colors duration-200 ${
-              selected === index
-                ? "text-white font-semibold"
-                : "text-gray-400 hover:text-blue-500"
-            }`}
-          >
-            {exp.company}
-          </button>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
-
+                    {/* list of companies */}
+                    <div className="flex flex-row md:flex-col space-x-4 md:space-x-0 md:space-y-4 md:pl-8 overflow-x-auto pb-2 md:pb-0">
+                        {experiences.map((exp, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setSelected(index)}
+                                className={`block text-left md:text-right w-full whitespace-nowrap md:whitespace-normal transition-colors duration-200 px-2 py-1 md:px-0 md:py-0 ${
+                                    selected === index
+                                        ? "text-white font-semibold"
+                                        : "text-gray-400 hover:text-blue-500"
+                                }`}
+                            >
+                                {exp.company}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
     )
 }
