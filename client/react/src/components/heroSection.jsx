@@ -15,7 +15,7 @@ export default function Hero() {
                     </div>
           
                     <p className="text-base sm:text-lg text-gray-300 mb-8 sm:mb-12 lg:mb-16 max-w-lg font-thin">
-                        CS student <span className="text-white font-medium">Information Systems Concentration.</span> Cybersecurtiy & Data Science Minor
+                        CS student <span className="text-white font-medium">Artificial Intelligence/Machine Learning Concentration.</span> Cybersecurtiy & Data Science Minor
                     </p>
                     
                     <div className="flex flex-col sm:flex-row sm:space-x-8 lg:space-x-16 space-y-4 sm:space-y-0 text-xs sm:text-sm">
