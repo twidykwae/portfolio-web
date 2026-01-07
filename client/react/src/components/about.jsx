@@ -5,7 +5,7 @@ export default function About() {
     <section id="about" className="bg-black text-white flex justify-center items-center px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20 min-h-[60vh]">
       <div className="max-w-3xl text-center space-y-4 sm:space-y-6 mb-12 sm:mb-16 md:mb-20">
         <p className="text-gray-300 text-base sm:text-lg font-light leading-relaxed">
-          I'm <span className="font-semibold text-white">Twidy Kwae</span>. I'm studying Computer Science at Taylor University with a concentration in Information Systems and minors in Cybersecurity and Data Science. I like dressing up, and taking photos.
+          I'm <span className="font-semibold text-white">Twidy Kwae</span>. I'm studying Computer Science at Taylor University with a concentration in Artificial Intelligence and Machine Learning and minors in Cybersecurity and Data Science.
         </p>
 
         <div className="flex justify-center pt-6 sm:pt-8 md:pt-11">
