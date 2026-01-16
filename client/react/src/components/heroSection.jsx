@@ -29,8 +29,8 @@ export default function Hero() {
                         </div>   
                     </div>
                 </div>
-                <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0 w-full lg:w-auto">
-                    <div className="relative">
+                    <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0 w-full lg:w-auto">
+                    <div className="relative light-hero-image">
                         <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 overflow-hidden outline-none">
                             <img 
                                 src="/light-bg.jpg" 

@@ -25,6 +25,56 @@
   }
 }
 
+/* Theme transitions */
+html.theme-transition,
+html.theme-transition * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Light theme overrides */
+html.theme-light {
+  background-color: #f8fafc;
+}
+html.theme-light body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+html.theme-light .bg-black {
+  background-color: #f8fafc !important;
+}
+html.theme-light .bg-gray-900 {
+  background-color: #e2e8f0 !important;
+}
+html.theme-light .bg-gray-800 {
+  background-color: #e5e7eb !important;
+}
+html.theme-light .bg-gray-700 {
+  background-color: #d1d5db !important;
+}
+html.theme-light .text-white {
+  color: #0f172a !important;
+}
+html.theme-light .text-gray-400 {
+  color: #4b5563 !important;
+}
+html.theme-light .text-gray-300 {
+  color: #6b7280 !important;
+}
+html.theme-light .border-gray-900 {
+  border-color: #e5e7eb !important;
+}
+html.theme-light .border-gray-800 {
+  border-color: #e5e7eb !important;
+}
+html.theme-light .border-gray-700 {
+  border-color: #d1d5db !important;
+}
+
+/* Hide the hero light image in light mode */
+html.theme-light .light-hero-image {
+  display: none;
+}
+
 @keyframes expand {
   0% { width: 0; }
   50% { width: 100%; }

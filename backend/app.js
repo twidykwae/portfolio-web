@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 import contactRoutes from "./routes/contactRoutes.js";
-import ragRoutes from "./routes/ragRoutes.js";
 import connectDB from "./config/db.js";
 import cors from "cors";
 dotenv.config();
@@ -39,7 +38,6 @@ app.use(express.json());
 const PORT = process.env.PORT || 3001;
 
 app.use("/api", contactRoutes);
-app.use("/api", ragRoutes);
 
 app.get("/", (req, res) => {
   res.send("App is working");

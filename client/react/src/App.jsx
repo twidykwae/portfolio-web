@@ -1,25 +1,18 @@
+import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/navBar.jsx";
-import Hero from "./components/heroSection.jsx";
-import Experience from "./components/experience.jsx";
-import About from "./components/about.jsx"
-import Projects from "./components/projects.jsx";
-import BibleVerse from "./components/bibleVerse.jsx";
-import Contact from "./components/contact.jsx";
 import Footer from "./components/footer.jsx";
-import RAGChat from "./components/ragChat.jsx";
+import Home from "./pages/Home.jsx";
+import Photography from "./pages/Photography.jsx";
 
 function App() {
   return (
     <>
       <NavBar />
-      <Hero />
-      <About />
-      <BibleVerse />
-      <Experience />
-      <Projects />
-      <Contact />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/photography" element={<Photography />} />
+      </Routes>
       <Footer />
-      <RAGChat />
     </>
   );
 }

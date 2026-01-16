@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { gsap } from "gsap";
 
 export default function Footer() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const linksRef = useRef(null);
 
   // Show/hide scroll to top button based on scroll position
   useEffect(() => {
@@ -15,6 +18,17 @@ export default function Footer() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const links = linksRef.current?.querySelectorAll(".footer-link");
+    if (!links || links.length === 0) return;
+
+    gsap.fromTo(
+      links,
+      { autoAlpha: 0, y: 8 },
+      { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power2.out" }
+    );
   }, []);
 
   // Smooth scroll to top function
@@ -76,6 +90,35 @@ export default function Footer() {
               <p className="text-gray-400 text-sm">
                 © {new Date().getFullYear()} Twidy Kwae. All rights reserved.
               </p>
+            </div>
+            <div className="text-center" ref={linksRef}>
+              <p className="text-xs uppercase tracking-wider text-gray-500 mb-2">Links</p>
+              <div className="flex items-center space-x-4 text-sm">
+                <Link
+                  to="/"
+                  className="footer-link inline-block text-gray-400 transition-colors"
+                  onMouseEnter={(e) =>
+                    gsap.to(e.currentTarget, { scale: 1.05, color: "#3b82f6", duration: 0.2 })
+                  }
+                  onMouseLeave={(e) =>
+                    gsap.to(e.currentTarget, { scale: 1, color: "", duration: 0.2 })
+                  }
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/photography"
+                  className="footer-link inline-block text-gray-400 transition-colors"
+                  onMouseEnter={(e) =>
+                    gsap.to(e.currentTarget, { scale: 1.05, color: "#3b82f6", duration: 0.2 })
+                  }
+                  onMouseLeave={(e) =>
+                    gsap.to(e.currentTarget, { scale: 1, color: "", duration: 0.2 })
+                  }
+                >
+                  Photography
+                </Link>
+              </div>
             </div>
             <div className="flex space-x-6">
               <a
