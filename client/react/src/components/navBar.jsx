@@ -86,7 +86,6 @@ export default function NavBar(){
         }, 0);
     };
 
-    // Close menu when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
