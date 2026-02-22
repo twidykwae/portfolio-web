@@ -6,6 +6,17 @@ export default function Experience(){
 
     const experiences = [
         {
+            company: "Taylor University Center For Innovation and Entrepreneurship",
+            position: "Technology Specialist",
+            location: "Upland, Indiana",
+            duration: "May 2026 - Present",
+            description: `Architected and deployed technology solutions for enterprise platforms including HubSpot, Fillout, and Project Planner, improving operational efficiency across departments
+Designed and maintained scalable database and software systems to track and analyze student and donor engagement across the university
+Collaborated cross-functionally with staff and faculty to diagnose and resolve technical issues, reducing downtime and improving user productivity
+Drove innovation by engineering program-specific solutions for startup and research initiatives, demonstrating adaptability across diverse technical challenges`,
+            isActive: true
+        },
+        {
             company: "Taylor University IT",
             position: "Field First Technician",
             location: "Upland, Indiana",
