@@ -4,6 +4,12 @@ export default function Projects() {
 
     const projects = [
         {
+            name: "Common Lisp Expert System",
+            description: "• Implemented a rule-based expert system in Common Lisp using backward chaining inference to prove logical goals and generate step-by-step explanations of its reasoning",
+            image: "/Screenshot 2026-02-22 031013.png",
+            link: "https://github.com/Mach417/cos280-expert-system"
+        },
+        {
             name: "NBA Win Probability Prediction ML Model ",
             description: "•	Developed and evaluated a logistic regression classifier to estimate NBA win probabilities using the 2025/26 data, achieving 95% prediction accuracy and 94% recall",
             image: "/Screenshot 2025-12-28 234408.png",
