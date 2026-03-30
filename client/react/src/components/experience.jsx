@@ -6,14 +6,28 @@ export default function Experience(){
 
     const experiences = [
         {
+            company: "LightSys Technology Services",
+            position: "Android Developer — Learn Evenki App",
+            location: "Upland, Indiana",
+            duration: "March 2025",
+            description: [
+                "Contributed to a week-long code-a-thon building an Android/Kotlin language learning app for the endangered Evenki language",
+                "Implemented a drag-and-drop quiz feature and a new Pronouns & Spoons learning tab",
+                "Updated video link infrastructure and assisted with app submissions to Google Play and RuStore"
+            ],
+            isActive: false
+        },
+        {
             company: "Taylor University Center For Innovation and Entrepreneurship",
             position: "Technology Specialist",
             location: "Upland, Indiana",
             duration: "May 2026 - Present",
-            description: `Architected and deployed technology solutions for enterprise platforms including HubSpot, Fillout, and Project Planner, improving operational efficiency across departments
-Designed and maintained scalable database and software systems to track and analyze student and donor engagement across the university
-Collaborated cross-functionally with staff and faculty to diagnose and resolve technical issues, reducing downtime and improving user productivity
-Drove innovation by engineering program-specific solutions for startup and research initiatives, demonstrating adaptability across diverse technical challenges`,
+            description: [
+                "Architected and deployed technology solutions for enterprise platforms including HubSpot, Fillout, and Project Planner, improving operational efficiency across departments",
+                "Designed and maintained scalable database and software systems to track and analyze student and donor engagement across the university",
+                "Collaborated cross-functionally with staff and faculty to diagnose and resolve technical issues, reducing downtime and improving user productivity",
+                "Drove innovation by engineering program-specific solutions for startup and research initiatives, demonstrating adaptability across diverse technical challenges"
+            ],
             isActive: true
         },
         {
@@ -21,7 +35,11 @@ Drove innovation by engineering program-specific solutions for startup and resea
             position: "Field First Technician",
             location: "Upland, Indiana",
             duration: "May 2025 - Present",
-            description: "• Deliver technical support to all students, faculty and lecturers on campus resolving hardware, software and network issues, improving user satisfaction • Resolve user tickets using Team Dynamix and resolving user issues over the phone. • Configure and ensure smooth deployment of laptops and workstations for use across campus ",
+            description: [
+                "Deliver technical support to all students, faculty and lecturers on campus resolving hardware, software and network issues, improving user satisfaction",
+                "Resolve user tickets using Team Dynamix and resolving user issues over the phone",
+                "Configure and ensure smooth deployment of laptops and workstations for use across campus"
+            ],
             isActive: true
         },
         {
@@ -29,7 +47,9 @@ Drove innovation by engineering program-specific solutions for startup and resea
             position: "Peer Tutor",
             location: "Upland, Indiana",
             duration: "February 2025 - Present (Campus Employment)",
-            description: "Provide one-on-one tutoring in core courses like Statistics, Introduction to Computational Solving with Python, Music Theory and Calculus resulting in students improving their grades and enhancing understanding in these courses",
+            description: [
+                "Provide one-on-one tutoring in core courses like Statistics, Introduction to Computational Solving with Python, Music Theory and Calculus resulting in students improving their grades and enhancing understanding in these courses"
+            ],
             isActive: false
         },
         {
@@ -37,7 +57,10 @@ Drove innovation by engineering program-specific solutions for startup and resea
             position: "STEM Tutor",
             location: "Accra, Ghana",
             duration: "April 2024 - August 2024",
-            description: " Instructed 100+ students between the ages 6 to 15 on how to build and program robots with Lego EV3 and Scratch • Created weekly interactive robotics challenges to boost children’s problem-solving skills, and to enhance creativity, confidence in STEM and to inspire a passion for technology in general ",
+            description: [
+                "Instructed 100+ students between the ages 6 to 15 on how to build and program robots with Lego EV3 and Scratch",
+                "Created weekly interactive robotics challenges to boost children’s problem-solving skills, and to enhance creativity, confidence in STEM and to inspire a passion for technology in general"
+            ],
             isActive: false
         }
     ]
@@ -60,9 +83,11 @@ Drove innovation by engineering program-specific solutions for startup and resea
                             {experiences[selected].location}
                         </p>
                         <p className="text-gray-400 text-sm sm:text-base">{experiences[selected].duration}</p>
-                        <p className="text-gray-400 mt-4 text-sm sm:text-base leading-relaxed">
-                            {experiences[selected].description}
-                        </p>
+                        <ul className="text-gray-400 mt-4 text-sm sm:text-base leading-relaxed list-disc pl-5 space-y-2">
+                            {experiences[selected].description.map((item, index) => (
+                                <li key={index}>{item}</li>
+                            ))}
+                        </ul>
                     </div>
 
                     {/* list of companies */}
