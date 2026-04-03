@@ -88,7 +88,7 @@ export default function Footer() {
           <div className="flex flex-col items-center space-y-4">
             <div className="text-center">
               <p className="text-gray-400 text-sm">
-                © {new Date().getFullYear()} Twidy Kwae. All rights reserved.
+                {new Date().getFullYear()} Twidy Kwae.
               </p>
             </div>
             <div className="text-center" ref={linksRef}>

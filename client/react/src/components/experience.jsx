@@ -7,12 +7,12 @@ export default function Experience(){
     const experiences = [
         {
             company: "LightSys Technology Services",
-            position: "Android Developer ",
+            position: "Android Developer (Code-A-Thon Participant) ",
             location: "Upland, Indiana",
             duration: "March 2025",
             description: [
                 "Developed an Android/Kotlin language learning app for the endangered Evenki language, spoken by indigenous communities across Russia and China",
-"Built interactive quiz features and new learning modules to make language acquisition more engaging and accessible",
+"Built interactive quiz features, speech recognition with MFCC and DTW, and new learning modules to make language acquisition more engaging and accessible",
 "Deployed the app to Google Play and RuStore, putting a digitally preserved language resource in the hands of real users"
             ],
             isActive: false
