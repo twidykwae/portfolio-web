@@ -19,7 +19,11 @@ const photos = [
   { src: "/IMG_5376.JPEG", alt: "Portrait 15" },
   { src: "/IMG_5381.JPEG", alt: "Portrait 16" },
   { src: "/IMG_5385.JPEG", alt: "Portrait 17" },
-  { src: "/IMG_5386.JPEG", alt: "Portrait 18" }
+  { src: "/IMG_5386.JPEG", alt: "Portrait 18" },
+  { src: "/IMG_5898.JPEG", alt: "Portrait 19" },
+  { src: "/IMG_6248.JPEG", alt: "Portrait 20" },
+  { src: "/IMG_6251.JPEG", alt: "Portrait 21" },
+  { src: "/IMG_6254.JPEG", alt: "Portrait 22" }
 ];
 
 export default function Photography() {
