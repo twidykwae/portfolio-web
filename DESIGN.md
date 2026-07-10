@@ -1,20 +1,20 @@
 ---
 name: Twidy Kelvin Kwae Portfolio
-description: Personal portfolio for grad-school admissions, built as a reading room: tinted OKLCH neutrals, single Manuscript Ochre accent, system sans typography, motion in service of reading.
+description: Personal portfolio for grad-school admissions. Palette reverted at the owner's request to a classic blue/black/white scheme (single Signal Blue accent), system sans typography, motion in service of reading.
 colors:
-  ink: "oklch(13% 0.005 70)"
-  ink-deep: "oklch(8% 0.005 70)"
-  paper: "oklch(96% 0.005 75)"
-  paper-dim: "oklch(83% 0.005 75)"
-  paper-soft: "oklch(64% 0.005 70)"
-  paper-faint: "oklch(48% 0.005 70)"
-  divider: "oklch(20% 0.005 70)"
-  divider-soft: "oklch(27% 0.005 70)"
-  accent: "oklch(75% 0.13 75)"
-  accent-deep: "oklch(58% 0.12 70)"
-  accent-hover: "oklch(48% 0.11 65)"
-  paper-light: "oklch(96% 0.005 75)"
-  ink-light: "oklch(20% 0.005 70)"
+  ink: "#000000"
+  ink-deep: "#111827"
+  paper: "#ffffff"
+  paper-dim: "#d1d5db"
+  paper-soft: "#9ca3af"
+  paper-faint: "#6b7280"
+  divider: "#1f2937"
+  divider-soft: "#374151"
+  accent: "#3b82f6"
+  accent-deep: "#2563eb"
+  accent-hover: "#1d4ed8"
+  ink-light: "#f8fafc"
+  paper-light: "#0f172a"
 typography:
   display-light:
     fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
@@ -133,6 +133,8 @@ This system explicitly rejects: the generic dev-portfolio template, bootcamp-sty
 - Motion responds to scroll, state, and theme. It never performs.
 - Two themes live in parallel (dark default, light toggle), both built on the same semantic tokens via CSS variables.
 - `prefers-reduced-motion` is respected globally.
+
+> **Palette note (current):** At the owner's request the site was reverted to a classic blue / black / white scheme: pure black (`#000`) page, white text, Tailwind-style neutral grays, and a single Signal Blue accent (`#3b82f6`, deep `#2563eb`, hover `#1d4ed8`). Light mode is a slate-white paper with the same blue accent. The Manuscript Ochre / warm-tinted-neutral guidance in the sections below is retained for historical context but no longer describes the shipped tokens; treat the front-matter `colors` block as the source of truth.
 
 ## 2. Colors: The Reading Room Palette
 

@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Hero from "../components/heroSection.jsx";
 import Experience from "../components/experience.jsx";
 import About from "../components/about.jsx";
-import Research from "../components/research.jsx";
 import Projects from "../components/projects.jsx";
 import BibleVerse from "../components/bibleVerse.jsx";
 import Contact from "../components/contact.jsx";
@@ -55,7 +54,6 @@ export default function Home() {
       <About />
       <BibleVerse />
       <Experience />
-      <Research />
       <Projects />
       <Contact />
     </div>

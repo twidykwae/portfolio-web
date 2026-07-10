@@ -5,32 +5,34 @@
 
 @layer base {
   :root {
-    --color-ink: oklch(13% 0.005 70);
-    --color-ink-deep: oklch(8% 0.005 70);
-    --color-paper: oklch(96% 0.005 75);
-    --color-paper-dim: oklch(83% 0.005 75);
-    --color-paper-soft: oklch(64% 0.005 70);
-    --color-paper-faint: oklch(48% 0.005 70);
-    --color-divider: oklch(20% 0.005 70);
-    --color-divider-soft: oklch(27% 0.005 70);
-    --color-accent: oklch(75% 0.13 75);
-    --color-accent-deep: oklch(58% 0.12 70);
-    --color-accent-hover: oklch(48% 0.11 65);
+    /* Dark theme: black / white / blue */
+    --color-ink: #000000;
+    --color-ink-deep: #111827;
+    --color-paper: #ffffff;
+    --color-paper-dim: #d1d5db;
+    --color-paper-soft: #9ca3af;
+    --color-paper-faint: #6b7280;
+    --color-divider: #1f2937;
+    --color-divider-soft: #374151;
+    --color-accent: #3b82f6;
+    --color-accent-deep: #2563eb;
+    --color-accent-hover: #1d4ed8;
     color-scheme: dark;
   }
 
   html.theme-light {
-    --color-ink: oklch(96% 0.005 75);
-    --color-ink-deep: oklch(92% 0.005 75);
-    --color-paper: oklch(20% 0.005 70);
-    --color-paper-dim: oklch(35% 0.005 70);
-    --color-paper-soft: oklch(48% 0.005 70);
-    --color-paper-faint: oklch(55% 0.005 70);
-    --color-divider: oklch(85% 0.005 75);
-    --color-divider-soft: oklch(78% 0.005 75);
-    --color-accent: oklch(55% 0.13 70);
-    --color-accent-deep: oklch(45% 0.12 65);
-    --color-accent-hover: oklch(38% 0.11 60);
+    /* Light theme: white / slate / blue */
+    --color-ink: #f8fafc;
+    --color-ink-deep: #ffffff;
+    --color-paper: #0f172a;
+    --color-paper-dim: #334155;
+    --color-paper-soft: #475569;
+    --color-paper-faint: #64748b;
+    --color-divider: #cbd5e1;
+    --color-divider-soft: #e2e8f0;
+    --color-accent: #2563eb;
+    --color-accent-deep: #1d4ed8;
+    --color-accent-hover: #1e40af;
     color-scheme: light;
   }
 
@@ -56,7 +58,12 @@
   }
   ::selection {
     background-color: var(--color-accent);
-    color: var(--color-ink);
+    color: #ffffff;
+  }
+
+  /* The glowing light bulb only reads on the dark hero; hide it in light mode. */
+  html.theme-light .light-hero-image {
+    display: none;
   }
 }
 
