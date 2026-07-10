@@ -7,18 +7,19 @@ export default function Contact() {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-   const showSuccess = () => {
-    toast.success('Thank you for connecting!', {
+  const showSuccess = () => {
+    toast.success('Thank you for connecting.', {
       position: 'top-center',
-      theme: 'colored'
+      theme: 'colored',
     });
   };
 
   const showError = (message) => {
     toast.error(message, {
       position: 'top-center',
-      theme: 'colored'
+      theme: 'colored',
     });
   };
 
@@ -31,92 +32,98 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
 
     try {
       const res = await fetch(`https://portfolio-web-production-421f.up.railway.app/api/contact`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        // Handle different error status codes
         if (res.status === 429) {
-          // Rate limit exceeded
           showError('Too many attempts. Please wait 15 minutes before trying again.');
         } else if (res.status === 400) {
-          // Validation error
           showError(data.error || 'Please check your input and try again.');
         } else if (res.status === 500) {
-          // Server error (including email send failure)
           showError(data.error || 'Something went wrong. Please try again later.');
         } else {
-          // Other errors
           showError(data.error || 'An error occurred. Please try again.');
         }
         return;
       }
 
-      // Success
       showSuccess();
-      // Reset form after successful submission
-      setFormData({
-        Name: "",
-        email: "",
-        message: "",
-      });
-
+      setFormData({ Name: "", email: "", message: "" });
     } catch (err) {
       console.error(err);
       showError('Network error. Please check your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-  return (
-    <section id="contact" className="bg-black text-white flex justify-center items-center py-20 px-4">
-      <div className="w-full max-w-lg">
-        <h2 className="text-2xl font-light text-center mb-8">Contact Me</h2>
+  const inputClass = "p-3 rounded-xl bg-ink border border-divider-soft text-paper placeholder-paper-faint font-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-colors duration-200";
 
-        <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="Name"
-            placeholder="Name"
-            value={formData.Name}
-            onChange={handleChange}
-            className="p-3 rounded-xl bg-black border border-gray-800 text-white placeholder-gray-400 font-thin focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
-            className="p-3 rounded-xl bg-black border border-gray-800 text-white placeholder-gray-400 font-thin focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            rows="5"
-            value={formData.message}
-            onChange={handleChange}
-            className="p-3 rounded-xl bg-black border border-gray-800 text-white placeholder-gray-400 font-thin focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          ></textarea>
+  return (
+    <section id="contact" className="bg-ink text-paper flex justify-center items-center py-20 px-4">
+      <div className="w-full max-w-lg">
+        <h2 className="text-2xl font-light text-center mb-8 text-paper">Contact</h2>
+
+        <form className="flex flex-col space-y-4" onSubmit={handleSubmit} noValidate>
+          <label className="flex flex-col gap-1.5">
+            <span className="text-[0.65rem] uppercase tracking-wider font-semibold text-paper-faint">Name</span>
+            <input
+              type="text"
+              name="Name"
+              autoComplete="name"
+              placeholder="Your name"
+              required
+              value={formData.Name}
+              onChange={handleChange}
+              className={inputClass}
+            />
+          </label>
+          <label className="flex flex-col gap-1.5">
+            <span className="text-[0.65rem] uppercase tracking-wider font-semibold text-paper-faint">Email</span>
+            <input
+              type="email"
+              name="email"
+              autoComplete="email"
+              placeholder="you@domain.com"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              className={inputClass}
+            />
+          </label>
+          <label className="flex flex-col gap-1.5">
+            <span className="text-[0.65rem] uppercase tracking-wider font-semibold text-paper-faint">Message</span>
+            <textarea
+              name="message"
+              placeholder="What would you like to say?"
+              rows="5"
+              required
+              value={formData.message}
+              onChange={handleChange}
+              className={`${inputClass} resize-y min-h-[120px]`}
+            />
+          </label>
 
           <button
             type="submit"
-            className="bg-blue-600 hover:bg-blue-700 text-white font-light py-3 px-6 rounded-xl transition"
+            disabled={isSubmitting}
+            className="bg-accent-deep hover:bg-accent-hover text-paper font-medium py-3 px-6 rounded-xl transition-colors duration-200 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Send Message
+            {isSubmitting ? "Sending..." : "Send Message"}
           </button>
         </form>
 
-        <ToastContainer autoClose={3000} transition={Slide} pauseOnFocusLoss={false} hideProgressBar={true}/>
-    
+        <ToastContainer autoClose={3000} transition={Slide} pauseOnFocusLoss={false} hideProgressBar={true} />
       </div>
     </section>
   );

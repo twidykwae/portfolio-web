@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { gsap } from "gsap";
 
-export default function NavBar(){
+const THEME_TRANSITION_MS = 280;
+
+export default function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
     const location = useLocation();
     const [theme, setTheme] = useState("dark");
-    const toggleIconRef = useRef(null);
 
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme");
@@ -26,64 +26,15 @@ export default function NavBar(){
     };
 
     const toggleTheme = () => {
-        const prevTheme = theme;
         const nextTheme = theme === "dark" ? "light" : "dark";
+        const root = document.documentElement;
+        root.classList.add("theme-transitioning");
         setTheme(nextTheme);
         localStorage.setItem("theme", nextTheme);
-
-        const bgElements = Array.from(
-            document.querySelectorAll(".bg-black, .bg-gray-900, .bg-gray-800, .bg-gray-700")
-        ).map((el) => ({
-            el,
-            from: getComputedStyle(el).backgroundColor
-        }));
-        const textElements = Array.from(
-            document.querySelectorAll(".text-white, .text-gray-400, .text-gray-300")
-        ).map((el) => ({
-            el,
-            from: getComputedStyle(el).color
-        }));
-        const borderElements = Array.from(
-            document.querySelectorAll(".border-gray-900, .border-gray-800, .border-gray-700")
-        ).map((el) => ({
-            el,
-            from: getComputedStyle(el).borderColor
-        }));
-
         applyTheme(nextTheme);
-
         window.setTimeout(() => {
-            const tl = gsap.timeline({
-                onComplete: () => {
-                    bgElements.forEach(({ el }) => gsap.set(el, { clearProps: "backgroundColor" }));
-                    textElements.forEach(({ el }) => gsap.set(el, { clearProps: "color" }));
-                    borderElements.forEach(({ el }) => gsap.set(el, { clearProps: "borderColor" }));
-                    if (toggleIconRef.current) {
-                        gsap.set(toggleIconRef.current, { clearProps: "transform" });
-                    }
-                }
-            });
-            bgElements.forEach(({ el, from }) => {
-                const to = getComputedStyle(el).backgroundColor;
-                tl.fromTo(el, { backgroundColor: from }, { backgroundColor: to, duration: 0.5, ease: "power2.out" }, 0);
-            });
-            textElements.forEach(({ el, from }) => {
-                const to = getComputedStyle(el).color;
-                tl.fromTo(el, { color: from }, { color: to, duration: 0.5, ease: "power2.out" }, 0);
-            });
-            borderElements.forEach(({ el, from }) => {
-                const to = getComputedStyle(el).borderColor;
-                tl.fromTo(el, { borderColor: from }, { borderColor: to, duration: 0.5, ease: "power2.out" }, 0);
-            });
-            if (toggleIconRef.current) {
-                tl.fromTo(
-                    toggleIconRef.current,
-                    { rotate: 0, scale: 1 },
-                    { rotate: prevTheme === "dark" ? 180 : -180, scale: 1.15, duration: 0.5, ease: "power2.out" },
-                    0
-                );
-            }
-        }, 0);
+            root.classList.remove("theme-transitioning");
+        }, THEME_TRANSITION_MS + 40);
     };
 
     useEffect(() => {
@@ -92,17 +43,22 @@ export default function NavBar(){
                 setIsMenuOpen(false);
             }
         };
-
         if (isMenuOpen) {
             document.addEventListener('mousedown', handleClickOutside);
         }
-
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [isMenuOpen]);
 
-    // Smooth scroll to section function
+    useEffect(() => {
+        const handleKey = (e) => {
+            if (e.key === "Escape" && isMenuOpen) setIsMenuOpen(false);
+        };
+        document.addEventListener("keydown", handleKey);
+        return () => document.removeEventListener("keydown", handleKey);
+    }, [isMenuOpen]);
+
     const handleNavClick = (e, sectionId) => {
         e.preventDefault();
         setIsMenuOpen(false);
@@ -111,51 +67,65 @@ export default function NavBar(){
             return;
         }
         const element = document.getElementById(sectionId);
-        if (element) {
-            const offset = 80; // Account for fixed navbar height
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - offset;
+        if (!element) return;
 
-            // Smooth scroll with easing animation
-            const startPosition = window.pageYOffset;
-            const distance = offsetPosition - startPosition;
-            const duration = 800; // milliseconds
-            let start = null;
+        const offset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-            const animateScroll = (timestamp) => {
-                if (!start) start = timestamp;
-                const progress = timestamp - start;
-                const percentage = Math.min(progress / duration, 1);
-                
-                // Easing function for smooth deceleration (ease-out cubic)
-                const ease = 1 - Math.pow(1 - percentage, 3);
-                
-                window.scrollTo(0, startPosition + distance * ease);
-                
-                if (progress < duration) {
-                    requestAnimationFrame(animateScroll);
-                }
-            };
-
-            requestAnimationFrame(animateScroll);
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (prefersReducedMotion) {
+            window.scrollTo({ top: offsetPosition, behavior: "auto" });
+            return;
         }
+
+        const startPosition = window.pageYOffset;
+        const distance = offsetPosition - startPosition;
+        const duration = 800;
+        let start = null;
+
+        const animateScroll = (timestamp) => {
+            if (!start) start = timestamp;
+            const progress = timestamp - start;
+            const percentage = Math.min(progress / duration, 1);
+            const ease = 1 - Math.pow(1 - percentage, 3);
+            window.scrollTo(0, startPosition + distance * ease);
+            if (progress < duration) {
+                requestAnimationFrame(animateScroll);
+            }
+        };
+
+        requestAnimationFrame(animateScroll);
     };
 
+    const navLinks = [
+        { id: "home", label: "Home" },
+        { id: "about", label: "About" },
+        { id: "experience", label: "Experience" },
+        { id: "research", label: "Research" },
+        { id: "projects", label: "Projects" },
+        { id: "contact", label: "Contact" },
+    ];
+
     return (
-        <nav className="bg-black text-white p-7 fixed w-full z-50 shadow-md font-thin"> 
+        <nav className="bg-ink text-paper p-7 fixed w-full z-50 font-light">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
-                <Link to="/" className="text-lg">Twidy Kwae</Link>
+                <Link
+                    to="/"
+                    className="text-lg tracking-tight focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4 rounded-sm"
+                >
+                    Twidy Kwae
+                </Link>
 
                 <div className="relative flex items-center gap-4" ref={menuRef}>
                     <button
                         onClick={toggleTheme}
-                        className="text-white hover:text-blue-500 transition focus:outline-none"
-                        aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+                        className="text-paper hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4 rounded-sm p-1"
+                        aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
                     >
                         {theme === "dark" ? (
                             <svg
-                                ref={toggleIconRef}
-                                className="w-5 h-5 transition-transform duration-300"
+                                className="w-5 h-5"
                                 fill="currentColor"
                                 viewBox="0 0 24 24"
                                 aria-hidden="true"
@@ -164,8 +134,7 @@ export default function NavBar(){
                             </svg>
                         ) : (
                             <svg
-                                ref={toggleIconRef}
-                                className="w-5 h-5 transition-transform duration-300 rotate-90"
+                                className="w-5 h-5"
                                 fill="currentColor"
                                 viewBox="0 0 24 24"
                                 aria-hidden="true"
@@ -176,8 +145,10 @@ export default function NavBar(){
                     </button>
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="flex flex-col items-end space-y-1.5 focus:outline-none z-50 text-white"
-                        aria-label="Toggle menu"
+                        className="flex flex-col items-end space-y-1.5 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4 rounded-sm p-1 z-50 text-paper hover:text-accent transition-colors duration-200"
+                        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                        aria-expanded={isMenuOpen}
+                        aria-controls="primary-menu"
                     >
                         <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
                         <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
@@ -185,48 +156,39 @@ export default function NavBar(){
                     </button>
 
                     {isMenuOpen && (
-                        <div className="fixed right-6 top-20 w-56 max-h-[calc(100vh-6rem)] overflow-y-auto bg-gray-900 border border-gray-800 rounded-lg shadow-lg z-50">
+                        <div
+                            id="primary-menu"
+                            role="menu"
+                            className="fixed right-6 top-20 w-56 max-h-[calc(100vh-6rem)] overflow-y-auto bg-divider border border-divider-soft rounded-lg z-50"
+                        >
                             <ul className="py-2">
+                                {navLinks.map((link) => (
+                                    <li key={link.id}>
+                                        <a
+                                            href={`/#${link.id}`}
+                                            role="menuitem"
+                                            className="block px-4 py-2 text-paper hover:bg-divider-soft hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:bg-divider-soft focus-visible:text-accent"
+                                            onClick={(e) => handleNavClick(e, link.id)}
+                                        >
+                                            {link.label}
+                                        </a>
+                                    </li>
+                                ))}
                                 <li>
-                                    <a 
-                                        href="/#home" 
-                                        className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-blue-500 transition"
-                                        onClick={(e) => handleNavClick(e, 'home')}
+                                    <Link
+                                        to="/cadence"
+                                        role="menuitem"
+                                        className="block px-4 py-2 text-paper hover:bg-divider-soft hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:bg-divider-soft focus-visible:text-accent"
+                                        onClick={() => setIsMenuOpen(false)}
                                     >
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a 
-                                        href="/#about" 
-                                        className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-blue-500 transition"
-                                        onClick={(e) => handleNavClick(e, 'about')}
-                                    >
-                                        About
-                                    </a>
-                                </li>
-                                <li>
-                                    <a 
-                                        href="/#experience" 
-                                        className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-blue-500 transition"
-                                        onClick={(e) => handleNavClick(e, 'experience')}
-                                    >
-                                        Experience & Proj.
-                                    </a>
-                                </li>
-                                <li>
-                                    <a 
-                                        href="/#contact" 
-                                        className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-blue-500 transition"
-                                        onClick={(e) => handleNavClick(e, 'contact')}
-                                    >
-                                        Contact
-                                    </a>
+                                        Cadence
+                                    </Link>
                                 </li>
                                 <li>
                                     <Link
                                         to="/photography"
-                                        className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-blue-500 transition"
+                                        role="menuitem"
+                                        className="block px-4 py-2 text-paper hover:bg-divider-soft hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:bg-divider-soft focus-visible:text-accent"
                                         onClick={() => setIsMenuOpen(false)}
                                     >
                                         Photography
@@ -238,5 +200,5 @@ export default function NavBar(){
                 </div>
             </div>
         </nav>
-    )
+    );
 }
