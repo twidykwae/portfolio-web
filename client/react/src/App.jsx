@@ -3,6 +3,7 @@ import NavBar from "./components/navBar.jsx";
 import Footer from "./components/footer.jsx";
 import Home from "./pages/Home.jsx";
 import Photography from "./pages/Photography.jsx";
+import Cadence from "./pages/Cadence.jsx";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/cadence" element={<Cadence />} />
         <Route path="/photography" element={<Photography />} />
       </Routes>
       <Footer />
