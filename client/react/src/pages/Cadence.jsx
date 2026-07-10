@@ -111,16 +111,7 @@ export default function Cadence() {
           Cadence
         </h1>
 
-        <div className="mt-5 flex items-center justify-center gap-4 text-paper-soft">
-          <span aria-hidden="true" className="h-px w-8 bg-divider-soft" />
-          <span className="italic text-lg sm:text-xl font-light">cadentia</span>
-          <span aria-hidden="true" className="h-px w-8 bg-divider-soft" />
-        </div>
-        <p className="mt-4 text-[0.65rem] sm:text-xs uppercase tracking-[0.2em] font-semibold text-paper-faint">
-          Latin · Rhythm · Resolution
-        </p>
-
-        <p className="mt-10 max-w-2xl text-2xl sm:text-3xl md:text-4xl font-light leading-tight text-paper text-balance">
+        <p className="mt-8 max-w-2xl text-2xl sm:text-3xl md:text-4xl font-light leading-tight text-paper text-balance">
           Turn a stack of syllabi into a semester you can actually run.
         </p>
         <p className="mt-6 max-w-xl text-base sm:text-lg font-light leading-relaxed text-paper-soft text-pretty">
@@ -133,6 +124,18 @@ export default function Cadence() {
         <p className="mt-4 text-xs sm:text-sm font-light text-paper-faint">
           Free for your first syllabus. Pro for the whole term.
         </p>
+      </section>
+
+      {/* Product visual */}
+      <section data-fade className="px-4 sm:px-6 md:px-8 pb-4 sm:pb-8">
+        <div className="max-w-5xl mx-auto">
+          <img
+            src="/cadence-steps.png"
+            alt="Cadence app on a phone: a weekly workload heatmap above Workload Heatmap, Crunch Week Detector, and Smart Study Planner cards"
+            className="w-full h-auto rounded-2xl border border-divider"
+            loading="lazy"
+          />
+        </div>
       </section>
 
       {/* Features */}
@@ -165,6 +168,18 @@ export default function Cadence() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Lifestyle visual */}
+      <section data-fade className="px-4 sm:px-6 md:px-8 py-8 sm:py-14">
+        <div className="max-w-5xl mx-auto">
+          <img
+            src="/cadence-adapt.png"
+            alt="A student holding their phone running Cadence, with This Week, Crunch Week, and Today's Focus cards floating alongside"
+            className="w-full h-auto rounded-2xl border border-divider"
+            loading="lazy"
+          />
         </div>
       </section>
 
