@@ -7,8 +7,8 @@ const experiences = [
         location: "Remote",
         duration: "June 2026 to Present",
         description: [
-            "Built and launched Cadence with the Anthropic API, an academic planning platform that turns a student's uploaded syllabi into a personalized semester plan with deadlines, workload heatmaps, and coaching",
-            "Grew to 200+ users across top universities and $1,000 in revenue as a sophomore, owning product, engineering, and go-to-market end to end"
+            "Grew Cadence to 200+ users across top universities and $1,000 in revenue as a sophomore by building an academic planning platform on the Anthropic API that turns a student's syllabi into a personalized semester plan",
+            "Turned a stack of syllabi into a full semester plan in under a minute by shipping automatic deadline extraction, workload heatmaps, and weekly coaching, and owned product, engineering, and growth end to end"
         ]
     },
     {
@@ -17,10 +17,10 @@ const experiences = [
         location: "Upland, Indiana",
         duration: "June 2026 to August 2026",
         description: [
-            "Built and analyzed Donor Insight Reports sold to clients, translating raw entity and transaction data into actionable fundraising intelligence",
-            "Designed and implemented a medallion database architecture in Microsoft Fabric, building ETL pipelines across public IRS data and private company data sources",
-            "Migrated the production database from Supabase to Delta Lake on OneLake, transferring and validating 30M+ rows and expanding capacity to support 10M+ rows for entity and transaction resolution at scale",
-            "Built and debugged relationship and entity-resolution pipelines, identifying and resolving data quality issues"
+            "Turned raw entity and transaction data into Donor Insight Reports sold to paying clients by building the analysis that surfaced fundraising prospects and giving patterns",
+            "Grew the platform's capacity past 10M rows for entity and transaction resolution by migrating the production database from Supabase to Delta Lake on OneLake and validating 30M+ rows in the move",
+            "Made public and private funding data queryable in one place by designing a medallion architecture in Microsoft Fabric and building ETL pipelines across IRS filings and private company sources",
+            "Improved data quality across the pipeline by building and debugging entity resolution logic that caught mismatched and duplicate records"
         ]
     },
     {
@@ -29,9 +29,9 @@ const experiences = [
         location: "Upland, Indiana",
         duration: "May 2026 to Present",
         description: [
-            "Run CRM operations in HubSpot, managing contact data and event communication for campus and entrepreneurship programs",
-            "Build and maintain event registration forms for Center for Innovation and Excellence (CIE) programs",
-            "Collaborate with the CIE team to ideate and execute new entrepreneurship events"
+            "Keep contact data clean and event communication on time for the Center for Innovation and Excellence by running its HubSpot CRM across campus and entrepreneurship programs",
+            "Cut signup friction for CIE programs by building and maintaining the event registration forms students use to enroll",
+            "Helped launch new entrepreneurship events by working with the CIE team to shape and run them from idea to execution"
         ]
     },
     {
@@ -40,9 +40,9 @@ const experiences = [
         location: "Upland, Indiana",
         duration: "March 2025 to June 2026",
         description: [
-            "Delivered technical support to 2000+ students, faculty, and staff, troubleshooting hardware, software, and network issues with a 95% resolution rate",
-            "Managed incident tickets in TeamDynamix and automated workstation deployment and configuration with Bash scripts, cutting setup time by 40%",
-            "Diagnosed network connectivity issues, ran system diagnostics, and maintained endpoint security compliance"
+            "Resolved 95% of issues for 2000+ students, faculty, and staff by troubleshooting hardware, software, and network problems across campus",
+            "Cut workstation setup time by 40% by automating deployment and configuration with Bash scripts, and tracked every incident in TeamDynamix",
+            "Kept campus endpoints secure and online by diagnosing network problems, running system diagnostics, and maintaining security compliance"
         ]
     },
     {
@@ -51,7 +51,7 @@ const experiences = [
         location: "Upland, Indiana",
         duration: "February 2025 to Present",
         description: [
-            "Provide one-on-one tutoring in Statistics, Introduction to Computational Solving with Python, Music Theory, and Calculus, helping students improve their grades and understanding"
+            "Helped students raise their grades in Statistics, Python, Music Theory, and Calculus by tutoring them individually and reworking the concepts they were stuck on"
         ]
     },
     {
@@ -60,8 +60,8 @@ const experiences = [
         location: "Accra, Ghana",
         duration: "April 2024 to August 2024",
         description: [
-            "Instructed 100+ students ages 6 to 15 on building and programming robots with Lego EV3 and Scratch",
-            "Created weekly robotics challenges to build problem-solving skills, creativity, and confidence in STEM"
+            "Taught 100+ students ages 6 to 15 to build and program robots by running hands on lessons with Lego EV3 and Scratch",
+            "Built problem solving skills and confidence in STEM by designing weekly robotics challenges the students looked forward to"
         ]
     }
 ];
@@ -69,10 +69,10 @@ const experiences = [
 const research = [
     {
         pill: "In progress · 2026",
-        title: "Flight software for a student-built CubeSat",
+        title: "Flight software for a student built CubeSat",
         meta: "Taylor University Computer Science and Engineering · undergraduate research",
         prose:
-            "Developing software for a student-built CubeSat under faculty supervision, contributing to a collaborative research publication. The work spans mission software for a small satellite platform, from onboard data handling to ground-communication routines.",
+            "Developing software for a student built CubeSat under faculty supervision, contributing to a collaborative research publication. The work spans mission software for a small satellite platform, from onboard data handling to ground communication routines.",
         links: [
             { label: "Project record", href: "https://pillars.taylor.edu/cse-faculty-student-projects/1/" }
         ]
@@ -80,9 +80,9 @@ const research = [
     {
         pill: "March 2025",
         title: "Speech recognition for the endangered Evenki language",
-        meta: "LightSys Code-A-Thon · Android / Kotlin · MFCC + DTW",
+        meta: "LightSys Codeathon · Android / Kotlin · MFCC + DTW",
         prose:
-            "Built a speech-recognition pipeline using MFCC feature extraction and Dynamic Time Warping for an Android language-learning app targeting Evenki, an endangered language spoken by indigenous communities across Russia and China. Shipped to Google Play and RuStore as a real-user-facing tool.",
+            "Built a speech recognition pipeline using MFCC feature extraction and Dynamic Time Warping for an Android language learning app targeting Evenki, an endangered language spoken by indigenous communities across Russia and China. Shipped to Google Play and RuStore for real students to use.",
         links: [
             { label: "Repository", href: "https://github.com/twidykwae" }
         ]
@@ -206,7 +206,7 @@ export default function Experience() {
                 <div id="research" className="mt-16 sm:mt-20 pt-12 sm:pt-16 border-t border-divider">
                     <h3 className="text-2xl sm:text-3xl font-bold text-paper">Research</h3>
                     <p className="mt-3 max-w-2xl text-sm sm:text-base text-paper-soft font-light leading-relaxed text-pretty">
-                        Long-form technical work outside the classroom, listed alongside my experience.
+                        Deeper technical work outside the classroom, listed alongside my experience.
                     </p>
 
                     <TimelineList>
