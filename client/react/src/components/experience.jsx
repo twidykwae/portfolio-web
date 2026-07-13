@@ -72,7 +72,7 @@ const research = [
         title: "Flight software for a student built CubeSat",
         meta: "Taylor University Computer Science and Engineering · undergraduate research",
         prose:
-            "Developing software for a student built CubeSat under faculty supervision, contributing to a collaborative research publication. The work spans mission software for a small satellite platform, from onboard data handling to ground communication routines.",
+            "Contributing to a collaborative research publication by developing flight software for a student built CubeSat under faculty supervision, building the mission routines that handle onboard data and ground communication for a small satellite platform.",
         links: [
             { label: "Project record", href: "https://pillars.taylor.edu/cse-faculty-student-projects/1/" }
         ]
@@ -82,7 +82,7 @@ const research = [
         title: "Speech recognition for the endangered Evenki language",
         meta: "LightSys Codeathon · Android / Kotlin · MFCC + DTW",
         prose:
-            "Built a speech recognition pipeline using MFCC feature extraction and Dynamic Time Warping for an Android language learning app targeting Evenki, an endangered language spoken by indigenous communities across Russia and China. Shipped to Google Play and RuStore for real students to use.",
+            "Put a working speech recognizer in students' hands on Google Play and RuStore by building an MFCC and Dynamic Time Warping pipeline for an Android app that teaches Evenki, an endangered language spoken by indigenous communities across Russia and China.",
         links: [
             { label: "Repository", href: "https://github.com/twidykwae" }
         ]
