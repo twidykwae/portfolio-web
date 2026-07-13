@@ -10,7 +10,7 @@ const projects = [
     {
         name: "Three-Point Evolution",
         description: "Analyzed 47 seasons of NBA data to trace how the three-point line reshaped the game, pairing statistical analysis with a narrative data-visualization walkthrough.",
-        image: null,
+        image: "/three-point-analysis.png",
         link: "https://github.com/twidykwae",
     },
     {

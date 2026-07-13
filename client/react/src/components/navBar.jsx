@@ -132,9 +132,14 @@ export default function NavBar() {
                 <div className="flex items-center justify-between gap-2 rounded-full border border-divider-soft bg-ink-deep px-3 sm:px-4 py-2.5">
                     <Link
                         to="/"
-                        className="shrink-0 px-2 text-base sm:text-lg tracking-tight text-paper hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 rounded-full"
+                        aria-label="Twidy Kwae, home"
+                        className="shrink-0 flex items-center px-1.5 rounded-full focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
                     >
-                        Twidy Kwae
+                        <img
+                            src="/tk-logo.png"
+                            alt="Twidy Kwae"
+                            className="nav-logo h-8 sm:h-9 w-auto"
+                        />
                     </Link>
 
                     {/* Desktop inline links */}

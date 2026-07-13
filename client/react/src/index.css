@@ -65,6 +65,11 @@
   html.theme-light .light-hero-image {
     display: none;
   }
+
+  /* TK monogram is shipped white for the dark nav; flip it dark in light mode. */
+  html.theme-light .nav-logo {
+    filter: invert(1);
+  }
 }
 
 /* Theme transition: enabled only during the swap so hover/focus stay snappy. */
